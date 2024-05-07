@@ -28,7 +28,7 @@ public:
     void update() {
         shape.move(velocity);
 
-        // Проверяем, прошло ли время неуязвимости после съедания таблетки
+        
         if (invulnerable && invulnerableClock.getElapsedTime().asSeconds() > 10) {
             invulnerable = false;
         }
@@ -105,9 +105,9 @@ public:
         : window(sf::VideoMode(width, height), "Pacman"),
           pacman(20, sf::Vector2f(width / 2, height - 20), 5.0f, 3),
           score(0) {
-        // Создаем врагов (привидений)
+        
         for (int i = 0; i < 4; ++i) {
-            ghosts.emplace_back(15, sf::Vector2f(100 * i + 50, 100));
+            ghosts.emplace_back(15, sf::Vector2f(100 * i + 50, 100)); // Создание привидений 
         }
     }
 
@@ -153,16 +153,14 @@ private:
     }
 
     void checkCollisions() {
-        // Проверяем столкновение с врагами
+       
         for (auto& ghost : ghosts) {
             if (pacman.isInvulnerable() && ghost.isActive()) {
-                // Если Pacman неуязвим, и враг активен, деактивируем врага
                 if (pacman.shape.getGlobalBounds().intersects(ghost.shape.getGlobalBounds())) {
                     ghost.deactivate();
-                    score += 100; // Добавляем очки за съедение врага
+                    score += 100; 
                 }
             } else if (pacman.shape.getGlobalBounds().intersects(ghost.shape.getGlobalBounds())) {
-                // Если Pacman неуязвим или враг неактивен, теряем жизнь
                 pacman.loseLife();
                 if (pacman.getLives() == 0) {
                     gameOver();
@@ -172,14 +170,12 @@ private:
     }
 
     void gameOver() {
-        // Код для завершения игры
-        std::cout << "Game Over! Your score: " << score << std::endl;
+        std::cout << "Игра завершена! Ваш счёт: " << score << std::endl;
         window.close();
     }
 };
 
 int main() {
-    // Задаем seed для генератора случайных чисел
     srand(time(nullptr));
 
     Game game(800, 600);
