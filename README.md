@@ -1,3 +1,6 @@
+README файл к игре:
+
+
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <vector>
