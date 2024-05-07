@@ -8,15 +8,19 @@ README файл к игре:
     #include <vector>
     #include <ctime>
  // Игра написана на принципе ООП - Объектно-ориентированного программирования, то есть игра сделана не из набора различных методов, а из заранее созданных объектов, к которым принадлежит набор различных функций к каждому из них. Благодаря этому код выглядит более нагляднее, а его написание и работа с ним ещё проще.
+
+
+// Создаём Pacman'а
+создали класс к которому принадлежит набор методов, далее:
     
     class Pacman {
     private:
-        sf::CircleShape shape;
-        sf::Vector2f velocity;
-        float speed;
-        int lives;
-        bool invulnerable;
-        sf::Clock invulnerableClock;
+        sf::CircleShape shape;    // создали ему круглую форму
+        sf::Vector2f velocity;   // задали вектор скорости
+        float speed;     // скорость Пакмана
+        int lives;   // количество жизней
+        bool invulnerable;   // булевая переменная, указывающая на то, уезвим ли он или нет
+        sf::Clock invulnerableClock;   // Объект класса sf::Clock, используемый для отслеживания времени неуязвимости Пакмана
     
     public:
         Pacman(float radius, sf::Vector2f position, float speed, int lives)
@@ -59,7 +63,7 @@ README файл к игре:
         bool isInvulnerable() const {
             return invulnerable;
         }
-    };
+    }
     
     class Ghost {
     private:
